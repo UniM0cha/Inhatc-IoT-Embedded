@@ -11,7 +11,7 @@ server.listen(3000);
 // 시리얼 포트 설정
 // /dev/cu.debug-console : 아두이노가 연결된 포트로 설정해야하지만 아두이노 없는 관계로 임시로 지정
 var serialPort = require('serialport');
-var sp = new serialPort('/dev/cu.debug-console',{
+var sp = new serialPort('/dev/cu.usbmodem13101',{
     baudRate : 9600,
     dataBits : 8,
     parity : 'none',
