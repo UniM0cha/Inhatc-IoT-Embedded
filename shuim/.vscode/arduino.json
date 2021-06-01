@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "/dev/tty.debug-console",
+    "programmer": "arduino:avrisp",
+    "sketch": "shuim.ino"
+}
