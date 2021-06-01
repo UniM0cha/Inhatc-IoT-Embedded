@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoveTimer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="time-timer">
+            <h1 class="title">Move <strong>Timer</strong></h1>
+            <div class="minute">
+                <div class="m0"><span>0</span></div>
+                <div class="m5"><span>5</span></div>
+                <div class="m10"><span>10</span></div>
+                <div class="m15"><span>15</span></div>
+                <div class="m20"><span>20</span></div>
+                <div class="m25"><span>25</span></div>
+                <div class="m30"><span>30</span></div>
+                <div class="m35"><span>35</span></div>
+                <div class="m40"><span>40</span></div>
+                <div class="m45"><span>45</span></div>
+                <div class="m50"><span>50</span></div>
+                <div class="m55"><span>55</span></div>
+            </div>
+            <canvas id="remain-time" width="220" height="220"></canvas>
+        </div>
+        <div class="controller">
+            <div class="buttons">
+                <p class="label">buttons</p>
+                <button id="btn-play"><i class="fas fa-play"></i></button>
+                <button id="btn-pause"><i class="fas fa-pause"></i></button>
+                <button id="btn-refresh"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            <div class="setting">
+                <p class="label">set minutes</p>
+                <button id="btn-minus"><i class="fas fa-minus"></i></button>
+                <span id="minute" class="number">45</span>
+                <button id="btn-plus"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
