@@ -3,8 +3,10 @@
 #include <ESP8266WebServer.h>
 
 //SSID와 패스워드 설정
-#define STASSID "iptime"
-#define STAPSK  ""
+#define STASSID "U+Net2493"
+#define STAPSK  "k1025423s."
+//#define STASSID "iptime"
+//#define STAPSK  ""
 
 const char *ssid = STASSID;
 const char *password = STAPSK;
@@ -68,9 +70,6 @@ void setup(void) {
   Serial.println(WiFi.localIP());
 
   server.on("/", handleRoot);
-  server.on("/inline", []() {
-    server.send(200, "text/plain", "this works as well");
-  });
   server.onNotFound(handleNotFound);
 
   //서버 시작
@@ -80,4 +79,21 @@ void setup(void) {
 
 void loop(void) {
   server.handleClient();
+  
+  if(Serial.available() > 0) { //수신되었는지 상태 확인
+    int state = Serial.read();
+
+    if(state == '1') {
+      char data[400];
+      snprintf(data, 400, "데이터 1");
+      server.send(200, "text/html", data);
+      Serial.println("1을 서버로 전송");
+    }
+    else if(state == '2'){
+      char data[400];
+      snprintf(data, 400, "데이터 2");
+      server.send(200, "text/html", data);
+      Serial.println("2를 서버로 전송");
+    }
+  }
 }

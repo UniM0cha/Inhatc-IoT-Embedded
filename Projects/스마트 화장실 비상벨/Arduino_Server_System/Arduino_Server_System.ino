@@ -4,8 +4,10 @@
 #include <SoftwareSerial.h>
 
 //SSID와 패스워드 설정
-#define STASSID "iptime"
-#define STAPSK  ""
+#define STASSID "U+Net2493"
+#define STAPSK  "k1025423s."
+//#define STASSID "iptime"
+//#define STAPSK  ""
 
 // 웹 서버 선언
 ESP8266WebServer server(80);
