@@ -3,6 +3,8 @@
 #include <ESP8266WebServer.h>
 
 //SSID와 패스워드 설정
+//#define STASSID "Atomy5G"
+//#define STAPSK  "ks123456789"
 #define STASSID "U+Net2493"
 #define STAPSK  "k1025423s."
 //#define STASSID "iptime"
@@ -16,21 +18,28 @@ ESP8266WebServer server(80);
 
 //웹 페이지 띄우기
 void handleRoot() {
-  char temp[400];
+  char data[400];
 
-  snprintf(temp, 400,
-    "<html>\
-      <head>\
-        <meta http-equiv='refresh' content='5'/>\
-        <title>ESP8266 Demo</title>\
-      </head>\
-      <body>\
-        <h1>Hello from ESP8266!</h1>\
-      </body>\
-    </html>"
-  );
-    
-  server.send(200, "text/html", temp);
+  if(Serial.available() > 0) { //수신되었는지 상태 확인
+    int state = Serial.read();
+
+    if(state == '1') {
+      snprintf(data, 400, "데이터 1");
+      server.send(200, "text/html", data);
+      Serial.println("1을 서버로 전송");
+    }
+    else if(state == '2'){
+      snprintf(data, 400, "데이터 2");
+      server.send(200, "text/html", data);
+      Serial.println("2를 서버로 전송");
+    }
+
+  }
+  else{
+      snprintf(data, 400, "입력되지 않음");
+      server.send(200, "text/html", data);
+      Serial.println("else");
+  }
 }
 
 // 페이지가 없을 때
@@ -79,21 +88,4 @@ void setup(void) {
 
 void loop(void) {
   server.handleClient();
-  
-  if(Serial.available() > 0) { //수신되었는지 상태 확인
-    int state = Serial.read();
-
-    if(state == '1') {
-      char data[400];
-      snprintf(data, 400, "데이터 1");
-      server.send(200, "text/html", data);
-      Serial.println("1을 서버로 전송");
-    }
-    else if(state == '2'){
-      char data[400];
-      snprintf(data, 400, "데이터 2");
-      server.send(200, "text/html", data);
-      Serial.println("2를 서버로 전송");
-    }
-  }
 }
