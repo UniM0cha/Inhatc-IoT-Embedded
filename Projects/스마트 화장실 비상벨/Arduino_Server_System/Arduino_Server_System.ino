@@ -4,8 +4,10 @@
 #include <SoftwareSerial.h>
 
 //SSID와 패스워드 설정
-#define STASSID "U+Net2493"
-#define STAPSK  "k1025423s."
+#define STASSID "Atomy"
+#define STAPSK  "ks123456789"
+//#define STASSID "U+Net2493"
+//#define STAPSK  "k1025423s."
 //#define STASSID "iptime"
 //#define STAPSK  ""
 
@@ -16,7 +18,7 @@ SoftwareSerial mySerial(10,11);
 const char *ssid = STASSID;
 const char *password = STAPSK;
 int stallState[3];
-String state = "000";
+String state = "00";
 /*
  * 0 : 사용가능
  * 1 : 사용중
@@ -73,7 +75,7 @@ void handleRoot() {
 
 //비정상경로
 void handleNotFound() {
-  String message = "File Not Found\n\n";
+  String message = "File Not Found";
   server.send(404, "text/plain", message);
 }
 /////////////////
@@ -100,7 +102,10 @@ void loop(void) {
     state = Serial.readStringUntil('\n');
     if(state.length() > 3){
       Serial.println("다시 입력해주세요");
-      state = "000";
+      state = "00";
+    }
+    else{
+      Serial.print(state + "로 설정했습니다.");
     }
   }
   
